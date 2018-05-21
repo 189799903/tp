@@ -1,0 +1,39 @@
+<div class="Top"id="top">
+	<div class="Top_Box">
+    	<div class="Logo FL"><a href="{dede:global.cfg_basehost/}"><img title="{dede:global.cfg_webname/}" src="{dede:global.cfg_templets_skin/}/css/images/logo.png"></a></div>
+      
+     <div class="searchbg">
+    	<form action="{dede:global.cfg_basehost/}/plus/search.php" name="formsearch">
+           
+           <input name="q" type="text"  value="" class="searchbox" onfocus="if(this.value==''){this.value='';}"  onblur="if(this.value==''){this.value='';}"/>
+          <button type="submit" class="searchsubmit" ></button>
+        </form>
+    </div>
+
+      
+    	
+    </div>
+ 
+</div>
+
+<div class="navbar" id="navbar">
+<ul class="navdiy">
+<li><a href='{dede:global.cfg_basehost/}' rel="nofollow" target="_self">主页</a></li>
+{dede:channelartlist typeid=top row=10}
+<li>
+<a href="{dede:field name='typeurl'/}">{dede:field name='typename'/}</a>
+<div class="navson" id="navson">
+<ul>
+{dede:channel type='son' noself='yes'}
+<li><a href="[field:typelink/]" target="_self">[field:typename/]</a></li>
+{/dede:channel}
+</ul>
+
+</div>
+</li>
+{/dede:channelartlist} 
+</ul>
+
+</div>
+
+

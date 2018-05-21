@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>【{dede:global.cfg_webname/}】汇聚IT界博客精华内容</title>
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="description" content="{dede:global.cfg_description/}" />
+<link rel="alternate" type="application/rss+xml" title="{dede:field.title/}" href="http://www.350351.com/rss.php"/>
+<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/css/style.css" type="text/css" />
+ <script language="javascript" type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/js.js"></script>
+</head>
+<body>
+{dede:include filename="head.htm"/}
+<div class="index">
+<div class="left">
+<img alt='站长博客网' src="{dede:global.cfg_templets_skin/}/css/images/zl.jpg">
+<p>
+smallseashell专注于IT圈的内容推荐，会从每时每刻产生的众多的科技资讯、技术文章、产品设计等内容中，利用智能算法，经过层层过滤筛选，实时准确地推荐给你最感兴趣的内容。
+</p>
+<p>
+我们每天会聚合到10000+的，可我们通过还算牛逼的算法只推荐给你几十上百篇，让你用最少的时间实现最想要的阅读。 我们聚合了众多大大小小的专业性博客，有业界科技，手机数码，移动互联，前沿技术，投资营销，编程语言，架构存储，产品设计，精品软件等诸多内容。在这里，你每天都可以长不少知识。
+</p>
+</div>
+<div class="right">
+<div class="list">
+{dede:arclist row='8' titlelen='120'}  
+<div class="article"><a href="[field:arcurl/]">[field:title/]</a><span>来源：[field:source /]</span></div>
+{/dede:arclist}
+</div>
+
+<div class="imglist">
+{dede:arclist row='3' titlelen='20'  type='image.'}  
+<div class="imgarc">
+[field:array runphp='yes']@me = (empty(@me['litpic']) ? "" : "<a href='{@me['arcurl']}' ><img src='{@me['litpic']}'/></a>"); [/field:array] 
+<a href="[field:arcurl/]" class="arc">[field:title/]</a>
+</div>
+{/dede:arclist}
+</div>
+
+</div>
+</div>
+{dede:include filename="footer.htm"/}
+
+</body>
+</html>

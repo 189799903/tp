@@ -1,0 +1,9 @@
+<?php
+//发送邮件相关配置
+return[
+    'EMAIL_SMTP'=>'smtp.163.com',
+    'EMAIL_ADDRESS'=>'13693659006@163.com',
+    'EMAIL_LOGINNAME'=>'13693659006@163.com',
+    'EMAIL_PASSWORD'=>'l1873720610',
+    'port'=>25
+];

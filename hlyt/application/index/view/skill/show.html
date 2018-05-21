@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <!-- Bootstrap Styles-->
+    <link href="__ROOT__/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="__ROOT__/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="__ROOT__/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="__ROOT__/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+<div id="wrapper">
+{include file="common/header"}
+{include file="common/left"}
+<body>
+    <div id="wrapper">
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            技术设计管理<small>技术设计展示</small>
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+               
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             技术设计展示
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr class="even gradeC">
+                                            <th>技术设计ID</th>
+                                            <th>技术设计名称</th>
+                                            <th>技术设计LOGO</th>
+                                            <th>技术设计简介</th>
+                                            <th>技术设计操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<?php foreach($data as $v): ?>
+	                                        <tr class="odd gradeX">
+	                                            <td>{$v.skill_id}</td>
+	                                            <td>{$v.skill_name}</td>
+	                                            <td><img src="__ROOT__/uploads/{$v.skill_logo}" alt="logo" style="width: 100px";height: 60px;"/></td>
+	                                            <td class="center">{$v.skill_sum}</td>
+	                                            <td class="center">
+	                                            	<!--<button class="del" id="{$v.skill_id}" p="{$page.page}">删除</button>-->
+	                                            	<a href="skillDel?id={$v.skill_id}">删除</a>
+	                                            	|
+	                                            	<a href="skillUp?id={$v.skill_id}">修改</a>
+	                                            </td>
+	                                        </tr>
+                                        <?php Endforeach ?>
+                                        
+                                    </tbody>
+                                   
+                                </table>
+                                 <p class="msg">
+									<font color="blue">
+										页次：{$page.page}/{$page.page_num} 总条数：{$page.num} 
+										<a href="skillShow?page=1">首页</a>
+										<a href="skillShow?page={$page.prev}">上一页</a>
+										<a href="skillShow?page={$page.next}">下一页</a>
+										<a href="skillShow?page={$page.page_num}">尾页</a>
+										总页数：{$page.page_num}
+									</font>
+								</p>
+								<!--<script src="__ROOT__/jquery-1.9.1.min.js"></script>
+								<script>
+									$(document).on("click",".del",function(){
+										var _this=$(this);
+										var id=$(this).attr("id")
+										var p=$(this).attr("p")
+										$.ajax({
+											type:"get",
+											url:"skillDelete?id="+id+"&p="+p,
+											async:true,
+											success:function(e){
+												console.log(e)
+											}
+										});
+									})
+								</script>-->
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+                <!-- /. ROW  -->
+    
+
+        </div>
+        <script src="__ROOT__/assets/js/jquery-1.10.2.js"></script>
+  <!-- Bootstrap Js -->
+<script src="__ROOT__/assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="__ROOT__/assets/js/jquery.metisMenu.js"></script>
+  <!-- Custom Js -->
+<script src="__ROOT__/assets/js/custom-scripts.js"></script></div>
+             <!-- /. PAGE INNER  -->
+           </div>
+    
+   
+</body>

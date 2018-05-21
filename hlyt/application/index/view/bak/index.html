@@ -1,0 +1,187 @@
+<link rel="stylesheet" type="text/css" href="/layui/css/layui.css" >
+<script type="text/javascript" src="/layui/lay/modules/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://www.hanlin.com/layui/lay/modules/layer.js"></script>
+<script type="text/javascript" src="http://www.hanlin.com/layui/layui.js"></script>
+
+
+<script>
+
+    layui.use(['jquery','layer'],function(){
+      window.$ = layui.$;
+      var layer = layui.layer;
+      //备份表方法
+      $("#export").click(function(){
+          $(this).html("正在发送备份请求...");
+          $.post(
+            $("#export-form").attr("action"),
+            $("#export-form").serialize(), 
+            function(data){
+               
+              if(data.code==1){
+                $("#export").html( "开始备份，请不要关闭本页面！");
+                backup(data.data.tab);
+                window.onbeforeunload = function(){ return "正在备份数据库，请不要关闭！" }
+              }else{
+                 layer.tips(data.msg, "#export", {
+                  tips: [1, '#3595CC'],
+                  time: 4000
+                });
+                $("#export").html("立即备份");
+              }
+              
+            }, "json");
+            return false;  
+      }); 
+      //递归备份表
+      function backup(tab,status){
+        status && showmsg(tab.id, "开始备份...(0%)");
+        $.get( $("#export-form").attr("action"), tab, function(data){
+          // console.log(data)
+                if(data.code==1){
+                  showmsg(tab, data.msg);
+
+                  if(!$.isPlainObject(data.data.tab)){
+                    $("#export").html("备份完成");
+                    window.onbeforeunload = function(){ return null }
+                    return;
+                  } 
+
+                  backup(data.data.tab, tab.id != data.data.tab.id);
+                } else {
+                  $("#export").html("立即备份");
+                }
+            }, "json");
+
+      }
+    //修改备份状态
+    function showmsg(tab, msg){
+       $("table tbody tr").eq(tab.id).find(".info").html(msg)
+    }
+   
+     //优化表
+      $("#optimize").click(function(){
+           $.post(this.href, $("#export-form").serialize(), function(data){
+           
+            layer.tips(data.msg, "#optimize", {
+              tips: [1, '#3595CC'],
+              time: 4000
+            });
+    
+            }, "json");
+            return false;    
+      });
+
+      //修复表
+      $("#repair").on("click",function(e){
+         
+          $.post(this.href, $("#export-form").serialize(), function(data){
+            layer.tips(data.msg, "#repair", {
+              tips: [1, '#3595CC'],
+              time: 4000
+            });
+            }, "json");
+            return false; 
+      });
+    });
+
+  </script>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <!-- Bootstrap Styles-->
+    <link href="__ROOT__/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="__ROOT__/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="__ROOT__/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="__ROOT__/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+             {include file="common/header"}
+        <!--/. NAV TOP  -->
+        {include file="common/left"}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+<div class="layui-form">
+    <a id="export" class="layui-btn" href="javascript:;" autocomplete="off">立即备份</a>
+    <a id="optimize" href="{:url('bak/optimize')}" class="layui-btn ">优化表</a>
+    <a id="repair" href="{:url('bak/repair')}" class="layui-btn">修复表</a>
+    <a  href="{:url('bak/importlist')}" class="layui-btn">还原数据库</a>
+    
+    <form id="export-form" method="post" action="{:url('bak/export')}">
+    <table class="layui-table">
+
+
+      <thead>
+        <tr>
+            <th width="48"><input class="check-all" checked="chedked" type="checkbox" value=""></th>
+          <th>表名</th>
+          <th>数据量</th>
+          <th>数据大小</th>
+          <th>创建时间</th>
+         
+          
+        </tr> 
+      </thead>
+    
+
+
+  <tbody>
+
+    {foreach name='list' item='table'}   
+       <tr>
+          <td>
+            <!-- 123 -->
+            <!-- <input type="checkbox" name=""> -->
+              <input class="ids" style="display:block" type="checkbox" name="tables[]" value="{$table.name}">
+          </td>
+          <td>{$table.name}</td>
+          <td>{$table.rows}</td>
+          <td>{$table.data_length|format_bytes}</td>
+          <td>{$table.create_time}</td>
+         
+         
+        </tr>
+    {/foreach}
+      </tbody>
+
+
+    </table>
+  </form>
+  </div>
+                <!-- /. ROW  -->
+                <footer><p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="__ROOT__/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="__ROOT__/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="__ROOT__/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="__ROOT__/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="__ROOT__/assets/js/morris/morris.js"></script>
+    <!-- Custom Js -->
+    <script src="__ROOT__/assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>

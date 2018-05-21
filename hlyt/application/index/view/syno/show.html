@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <!-- Bootstrap Styles-->
+    <link href="__ROOT__/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="__ROOT__/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="__ROOT__/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="__ROOT__/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+       {include file="common/header"}
+        <!--/. NAV TOP  -->
+        {include file="common/left"}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                           简介添加
+                        </h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+                <div class="row">
+
+                	<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+ 
+  <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+    <thead>
+      <tr role="row">
+        <th class="sorting_asc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="邮箱: activate to sort column ascending" aria-sort="ascending" style="width: 164px;">邮箱</th>
+        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="电话: activate to sort column ascending" style="width: 254px;">电话</th>
+        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="公司qq: activate to sort column ascending" style="width: 231px;">公司qq</th>
+        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="公司客服QQ: activate to sort column ascending" style="width: 139px;">公司客服QQ</th>
+        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="公司简介: activate to sort column ascending" style="width: 98px;">公司简介</th>
+        <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="操作: activate to sort column ascending" style="width: 98px;">操作</th></tr>
+    </thead>
+    <tbody>
+    	{foreach name='data' item='v'}
+      <tr class="gradeA odd">
+        <td class="sorting_1">{$v.company_email}</td>
+        <td class=" ">{$v.company_tel}</td>
+        <td class=" ">{$v.company_qq}</td>
+        <td class="center ">{$v.company_connect_qq}</td>
+        <td class="center ">{$v.company_sum}</td>
+        <td class="center ">
+        	<a href="update?id={$v.company_id}">修改</a>
+        </td></tr>
+     {/foreach}
+    </tbody>
+  </table>
+  <div class="row">
+  
+</div>
+                	<div class="pagelist">
+				        页次：{$date.page}/{$date.page_num} 总条数{$date.nums} 总页数{$date.page_num}
+				        <a href="<?=URL('index/syno/show')?>?page=1">首页</a>
+				        <a href="<?=URL('index/syno/show')?>?page={$date.up}">上一页</a>
+				        <a href="<?=URL('index/syno/show')?>?page={$date.next}">下一页</a>
+				        <a href="<?=URL('index/syno/show')?>?page={$date.page_num}">尾页</a>
+				      </div>
+                    
+                </div>
+
+
+
+               
+                <!-- /. ROW  -->
+                <footer><p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="__ROOT__/assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="__ROOT__/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="__ROOT__/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="__ROOT__/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="__ROOT__/assets/js/morris/morris.js"></script>
+    <!-- Custom Js -->
+    <script src="__ROOT__/assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>

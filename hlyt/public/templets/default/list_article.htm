@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>【{dede:type}[field:typename /]{/dede:type}】{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:type}[field:typename /]{/dede:type}">
+<meta name="description" content="站长博客网的{dede:type}[field:typename /]{/dede:type}栏目专注提供{dede:type}[field:typename /]{/dede:type}的内容推荐，这里是一个聚合{dede:type}[field:typename /]{/dede:type}专业性博客的知识分享平台,每天只推荐给你几十上百篇关于{dede:type}[field:typename /]{/dede:type}的内容，让你用最少的时间实现最想要的阅读。">
+<link rel="stylesheet" href="{dede:global.cfg_templets_skin/}/css/style.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/js.js"></script>
+</head>
+<body>
+
+{dede:include filename="head.htm"/}
+
+<div class="Main1">
+	<div class="m_Left1 FL">
+
+        <div class="m_Box11">您的位置: {dede:field name='position'/}</div>
+        
+       {dede:list pagesize='10' titlelen='120'}      
+          <div class="m_Grid2">
+        	
+            <div class="m_Box1">
+            	<div class="left">
+				<div class="m_T2">
+
+            	<p class="p4"><a href="[field:arcurl/]">[field:title/]</a></p>
+                <p class="p5">
+                	<span class="c4">[field:typelink/]</span>
+                    
+					<span class="c7">来源：<a href="http://www.350351.com/s.php?k=[field:source /]">[field:source /]</a></span>
+					
+					<span class="c5">[field:pubdate function=strftime('%Y.%m.%d',@me)/]</span>
+                    <span class="c6">[field:click/]次浏览</span>
+                </p>
+            </div>
+		[field:description/]...
+		
+			</div>
+			<div class="right">
+			[field:array runphp='yes']@me = (strpos(@me['litpic'],'defaultpic') ? "" : "<img src='{@me['litpic']}'/>"); [/field:array] 
+			</div>
+            </div>
+            
+            </div>
+		{/dede:list}
+        
+		<div >
+<div class="pagelist">{dede:pagelist listitem="index,end,pre,next,pageno" listsize="4"/}</div>
+		</div>
+        
+        
+        
+    </div>
+    <div class="clear"></div>
+</div>
+{dede:include filename="footer.htm"/}
+</body>
+</html>

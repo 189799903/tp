@@ -1,0 +1,31 @@
+<nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                   {volist name="dddd" id="vo"}
+                        <li>
+                                                       <a href="javascript:void(0)"><i class="fa fa-sitemap"></i> {$vo.name}<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                   
+                            {volist name="$vo.son" id="v"}
+
+                             <li>
+                                <a href="__ROOT__/index/{$v.path}">{$v.name}<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                   {volist name="$v['son']" id="va"} 
+                                    <li>
+                                        <a href="{:url($va.path)}">{$va.name}</a>
+                                    </li>
+
+                                    {/volist}
+
+                                        </ul>
+
+                                    </li>
+                                    {/volist}
+                                </ul>
+                            </li>
+                    {/volist}
+                  </ul>
+
+            </div>
+        </nav>
